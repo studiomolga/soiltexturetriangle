@@ -60,13 +60,14 @@ class Noise{
       case NONE:
         break;
       case BINARY:
-        clr = color(random(2) * 255, 32);
+        clr = color(random(2) * 255);
+        //clr = color(255, 32);
         break;
       case GREY:
-        clr = color(random(256), 32);
+        clr = color(random(256));
         break;
       case COLOR:
-        clr = color(random(256), random(256), random(256), 127);
+        clr = color(random(256), random(256), random(256));
         break;
     }
     return clr;
