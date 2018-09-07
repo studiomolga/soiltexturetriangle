@@ -1,11 +1,13 @@
 class Triangle{
+  PGraphics buffer;
   int topOffset;
   int bottomOffset;
   int strWeight;
   color clr;
   PShape triangle;
   
-  Triangle(int topOffset, int bottomOffset, color clr, int strWeight){
+  Triangle(PGraphics buffer, int topOffset, int bottomOffset, color clr, int strWeight){
+    this.buffer = buffer;
     this.topOffset = topOffset;
     this.bottomOffset = bottomOffset;
     this.strWeight = strWeight;
@@ -31,17 +33,21 @@ class Triangle{
   }
   
   void display(){
-    shape(triangle, 0, 0);
+    buffer.beginDraw();
+    buffer.shape(triangle, 0, 0);
+    buffer.endDraw();
   }
 }
 
 class Circle{
+  PGraphics buffer;
   int radius;
   color clr;
   PVector pos;
   PShape circle;
   
-  Circle(PVector pos, int radius, color clr){
+  Circle(PGraphics buffer, PVector pos, int radius, color clr){
+    this.buffer = buffer;
     this.pos = pos;
     this.radius = radius;
     this.clr = clr;
@@ -60,6 +66,8 @@ class Circle{
   }
   
   void display(){
-    shape(circle, pos.x, pos.y);
+    buffer.beginDraw();
+    buffer.shape(circle, pos.x, pos.y);
+    buffer.endDraw();
   }
 }
