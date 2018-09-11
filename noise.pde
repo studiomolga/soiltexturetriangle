@@ -100,6 +100,16 @@ class Noise{
       if(item.clr == clr){
         if(random(255) < alpha){
           type = item.type;
+          if(type ==  Type.CIRCLE){
+            print("alpha: ");
+            print(alpha);
+            print(" | color: ");
+            print(red(clr));
+            print(", ");
+            print(green(clr));
+            print(", ");
+            println(blue(clr));
+          }
         }
         break;
       }
@@ -125,6 +135,7 @@ class Noise{
           }
         }
       }
+      println("-------------------");
       buffer.endDraw();
       startTime = millis();
     }
