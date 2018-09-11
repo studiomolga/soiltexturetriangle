@@ -100,20 +100,20 @@ class Noise{
       
       
       if(item.clr == clr){
-        println("looping through noisemap");
+        //println("looping through noisemap");
         float rand = random(255);
-        // if(item.type ==  Type.CIRCLE){
-        //  print("random val: ");
-        //  print(rand);
-        //  print(" | alpha: ");
-        //  print(alpha);
-        //  print(" | color: ");
-        //  print(red(clr));
-        //  print(", ");
-        //  print(green(clr));
-        //  print(", ");
-        //  println(blue(clr));
-        //}       
+         if(item.type ==  Type.CIRCLE && rand < alpha){
+          print("random val: ");
+          print(rand);
+          print(" | alpha: ");
+          println(alpha);
+          //print(" | color: ");
+          //print(red(clr));
+          //print(", ");
+          //print(green(clr));
+          //print(", ");
+          //println(blue(clr));
+        }       
         if(rand < alpha){
           type = item.type;
  
