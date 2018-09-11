@@ -1,4 +1,4 @@
-static final int BACKGROUND_COLOR = 255;
+static final int BACKGROUND_COLOR = 0;
 
 Noise noise;
 PGraphics buffer;
@@ -24,7 +24,6 @@ void draw(){
   circle.display();
   triangle.display();
   
-  //image(buffer, 0, 0);
   noise.update();
   noise.display();
 } 

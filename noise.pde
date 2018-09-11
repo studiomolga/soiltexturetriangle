@@ -5,6 +5,12 @@ class NoiseMap{
   Type type;
   color clr;
   
+  /*
+  TODO: add a data array here, this could be different for every noisemap. It would pass along all data needed in order to create the speciic noise color
+  TODO: add a way of updating the data array with new data.
+  TODO: change name of NoiseMap to NoiseData
+  */
+  
   NoiseMap(String id, Type type, color clr){
     this.id = id;
     this.type = type;
@@ -37,28 +43,31 @@ class Noise{
   }
   
   color getColor(Type type, PVector pos){
-    //here we can place any format for coloring the noise, just make sure we add this to the Type enum at the top of the file
-    
-    /* 
-    somehow here we need to make something that can form a gradient out of the noise... which means we will need to know the coordinate of the pixel
-    it however still needs to be noise so there needs to be some random distribution, i guess we can do something with colorLerp() and then a random variation of the inter value 
-    but we might have to inject some other random colors in order to keep the feelinig of it being noise, but first we should try the above method
-    */
     color clr = color(0);
+    color startClr = color(0);
+    color endClr = color(255);
+    float inter = 0;
     switch(type){
       case NONE:
         break;
       case BACKGROUND:
         float gradientOffset = 100;        //play with this value can also be negative
-        float inter = (pos.y - gradientOffset) / (height - gradientOffset);
+        inter = (pos.y - gradientOffset) / (height - gradientOffset);
+        startClr = color(0);
+        endClr = color(127);
         if(random(100) < inter * 100){
-          clr = lerpColor(color(255), color(0), inter);
+          clr = lerpColor(startClr, endClr, inter);
         } else {
-            clr = color(255);
+            clr = color(startClr);
         }
         break;
       case CIRCLE:
-        clr = color(random(256));
+        float diameter = 350;
+        inter = pos.y / (diameter / 2.0f);
+        startClr = color(88, 75, 186);
+        endClr = color(241, 165, 15);
+        float randIncr = random(-0.2, 0.2);
+        clr = lerpColor(startClr, endClr, inter + randIncr);
         break;
       case TRI:
         clr = color(random(256), random(256), random(256));
