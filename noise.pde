@@ -91,15 +91,15 @@ class Noise {
     float alpha = alpha(c);
     color clr = color(red(c), green(c), blue(c));
   
-    if(red(clr) == 0 && green(clr) == 255 && blue(clr) == 0){
-      print(red(clr));
-      print(", ");
-      print(green(clr));
-      print(", ");
-      print(blue(clr));
-      print(", ");
-      println(alpha(clr));
-    }
+    //if(red(clr) == 0 && green(clr) == 255 && blue(clr) == 0){
+    //  print(red(clr));
+    //  print(", ");
+    //  print(green(clr));
+    //  print(", ");
+    //  print(blue(clr));
+    //  print(", ");
+    //  println(alpha(clr));
+    //}
     
     //print(red(clr));
     //print(", ");
@@ -109,6 +109,10 @@ class Noise {
     //print(", ");
     //println(alpha(clr));
     for (NoiseMap item : noiseMap) {
+      
+      if(red(item.clr) == 0 && green(item.clr) == 255 && blue(item.clr) == 0){
+        println(item.type);
+      }
 
       if (item.clr == clr) {
         //println("looping through noisemap");
