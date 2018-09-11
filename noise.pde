@@ -29,6 +29,8 @@ class Noise {
   float startTime;
   color triangleClr;
   NoiseMap noiseMap[];
+  float circleFade;
+  float fadeIncr;
 
   Noise(PGraphics shapeBuffer, float rate) {
     this.shapeBuffer = shapeBuffer;
@@ -36,6 +38,8 @@ class Noise {
     buffer = createGraphics(width, height);
     startTime = millis();
     noiseMap = new NoiseMap[0];
+    circleFade = 0;
+    fadeIncr = 0.1;
   }
 
   void setTriangleColor(color clr) {
@@ -89,7 +93,7 @@ class Noise {
 
     color c = shapeBuffer.get(x, y);
     float alpha = alpha(c);
-    color clr = color(red(c), green(c), blue(c));
+    color clr = color(red(c), green(c), blue(c), 255);
   
     //if(red(clr) == 0 && green(clr) == 255 && blue(clr) == 0){
     //  print(red(clr));
@@ -116,29 +120,20 @@ class Noise {
 
       if (item.clr == clr) {
         //println("looping through noisemap");
-        float rand = random(255);
-        //print("item.type: ");
-        //print(item.type);
-        //print(" | rand < alpha: ");
-        //println(rand < alpha);
-        if (item.type ==  Type.CIRCLE && rand < alpha) {
-          //print("random val: ");
-          //print(rand);
-          //print(" | alpha: ");
-          //println(alpha);
-          //print(" | color: ");
-          //print(red(clr));
-          //print(", ");
-          //print(green(clr));
-          //print(", ");
-          //println(blue(clr));
-        }       
-        if (rand < alpha) {
+        float rand = random(100);   
+        if(item.type == Type.CIRCLE){
+          if(rand < circleFade){
+            type = item.type;
+          }
+        } else {
           type = item.type;
-          //if (type == Type.TRI) {
-          //  println(type);
-          //}
         }
+        //if (rand < circleFade) {
+        //  type = item.type;
+        //  //if (type == Type.TRI) {
+        //  //  println(type);
+        //  //}
+        //}
         break;
       }
     }
@@ -150,6 +145,11 @@ class Noise {
       buffer.beginDraw();
       buffer.clear();
       buffer.background(0, 0);
+      if(circleFade <= 100.0f){
+        circleFade += fadeIncr;
+      } else {
+        circleFade = 100.0f;
+      }
       for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
           //color shapeClr = shapeBuffer.get(x, y);

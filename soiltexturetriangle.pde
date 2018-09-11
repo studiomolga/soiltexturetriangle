@@ -25,11 +25,11 @@ void draw(){
   background(BACKGROUND_COLOR);
   clearBuffer();
   
-  if(circleAlpha <= 255.0f){
-    circleAlpha += 0.1;
-    circle.setAlpha((int) circleAlpha);
-    //println(circleAlpha);
-  } 
+  //if(circleAlpha <= 255.0f){
+  //  circleAlpha += 0.1;
+  //  circle.setAlpha((int) circleAlpha);
+  //  //println(circleAlpha);
+  //} 
   
   //circleAlpha %= 255;
   //println(circleAlpha);
@@ -37,14 +37,14 @@ void draw(){
   
   circle.display();
   //triangle.display();
-  color test = buffer.get(width / 2 , 0);
-  print(red(test));
-  print(", ");
-  print(green(test));
-  print(", ");
-  print(blue(test));
-  print(", ");
-  println(alpha(test));
+  //color test = buffer.get(width / 2 , 0);
+  //print(red(test));
+  //print(", ");
+  //print(green(test));
+  //print(", ");
+  //print(blue(test));
+  //print(", ");
+  //println(alpha(test));
   //image(buffer, 0, 0);
   noise.update();
   noise.display();
