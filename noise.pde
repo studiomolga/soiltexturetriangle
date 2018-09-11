@@ -97,8 +97,10 @@ class Noise{
     //print(", ");
     //println(alpha(clr));
     for(NoiseMap item : noiseMap){
-      println("looping through noisemap");
+      
+      
       if(item.clr == clr){
+        println("looping through noisemap");
         float rand = random(255);
         // if(item.type ==  Type.CIRCLE){
         //  print("random val: ");
