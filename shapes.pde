@@ -19,9 +19,9 @@ class Triangle{
   
   void createTriangle(){
     triangle.beginShape();
-    triangle.strokeWeight(strWeight);
-    triangle.stroke(0);
-    //triangle.noStroke();
+    //triangle.strokeWeight(strWeight);
+    //triangle.stroke(0);
+    triangle.noStroke();
     triangle.fill(clr);
     triangle.vertex(width/2, topOffset);
     triangle.vertex((width - 1) - strWeight, height - bottomOffset);
@@ -64,6 +64,11 @@ class Circle{
   
   PShape getShape(){
     return circle;
+  }
+  
+  void setAlpha(int alpha){
+    clr = color(red(clr), green(clr), blue(clr), alpha);
+    circle.setFill(clr);
   }
   
   void display(){

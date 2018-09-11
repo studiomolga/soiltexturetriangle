@@ -4,7 +4,8 @@ class NoiseMap{
   String id;
   Type type;
   color clr;
-  
+  boolean isEliminating;
+    
   /*
   TODO: add a data array here, this could be different for every noisemap. It would pass along all data needed in order to create the speciic noise color
   TODO: add a way of updating the data array with new data.
@@ -52,7 +53,7 @@ class Noise{
       case NONE:
         break;
       case BACKGROUND:
-        float gradientOffset = 100;        //play with this value can also be negative
+        float gradientOffset = 0;        //play with this value can also be negative
         inter = (pos.y - gradientOffset) / (height - gradientOffset);
         startClr = color(0);
         endClr = color(127);
@@ -82,10 +83,24 @@ class Noise{
   
   Type getType(int x, int y){
     Type type = Type.BACKGROUND;
+    //color clr = shapeBuffer.get(x, y);
+    
     color clr = shapeBuffer.get(x, y);
+    float alpha = alpha(clr);
+    clr = color(red(clr), green(clr), blue(clr));
+    
+    //print(red(clr));
+    //print(", ");
+    //print(green(clr));
+    //print(", ");
+    //print(blue(clr));
+    //print(", ");
+    //println(alpha(clr));
     for(NoiseMap item : noiseMap){
       if(item.clr == clr){
-        type = item.type;
+        if(random(255) < alpha){
+          type = item.type;
+        }
         break;
       }
     }
@@ -99,6 +114,10 @@ class Noise{
       buffer.background(0, 0);
       for(int x = 0; x < width; x++){
         for(int y = 0; y < height; y++){
+          //color shapeClr = shapeBuffer.get(x, y);
+          //float alpha = alpha(shapeClr);
+          //shapeClr = color(red(shapeClr), green(shapeClr), blue(shapeClr));
+          //Type t = getType(shapeClr);
           Type t = getType(x, y);
           if(t != Type.NONE){
             color clr = getColor(t, new PVector(x, y));
