@@ -98,18 +98,22 @@ class Noise{
     //println(alpha(clr));
     for(NoiseMap item : noiseMap){
       if(item.clr == clr){
-        if(random(255) < alpha){
+        float rand = random(255);
+         if(item.type ==  Type.CIRCLE){
+          print("random val: ");
+          print(rand);
+          print(" | alpha: ");
+          print(alpha);
+          print(" | color: ");
+          print(red(clr));
+          print(", ");
+          print(green(clr));
+          print(", ");
+          println(blue(clr));
+        }       
+        if(rand < alpha){
           type = item.type;
-          if(type ==  Type.CIRCLE){
-            print("alpha: ");
-            print(alpha);
-            print(" | color: ");
-            print(red(clr));
-            print(", ");
-            print(green(clr));
-            print(", ");
-            println(blue(clr));
-          }
+ 
         }
         break;
       }
