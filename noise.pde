@@ -102,6 +102,10 @@ class Noise{
       if(item.clr == clr){
         //println("looping through noisemap");
         float rand = random(255);
+        print("item.type: ");
+        print(item.type);
+        print(" | rand < alpha: ");
+        println(rand < alpha);
          if(item.type ==  Type.CIRCLE && rand < alpha){
           print("random val: ");
           print(rand);
