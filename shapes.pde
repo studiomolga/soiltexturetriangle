@@ -21,6 +21,7 @@ class Triangle{
     triangle.beginShape();
     triangle.strokeWeight(strWeight);
     triangle.stroke(0);
+    //triangle.noStroke();
     triangle.fill(clr);
     triangle.vertex(width/2, topOffset);
     triangle.vertex((width - 1) - strWeight, height - bottomOffset);

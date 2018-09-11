@@ -9,6 +9,7 @@ class NoiseMap{
   TODO: add a data array here, this could be different for every noisemap. It would pass along all data needed in order to create the speciic noise color
   TODO: add a way of updating the data array with new data.
   TODO: change name of NoiseMap to NoiseData
+  TODO: add special border constructor, which should take the colors of the two other components and use it to have all other colors of which the alpha is 255 set to a noise color mode
   */
   
   NoiseMap(String id, Type type, color clr){
