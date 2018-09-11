@@ -28,6 +28,7 @@ void draw(){
   if(circleAlpha <= 255.0f){
     circleAlpha += 0.1;
     circle.setAlpha((int) circleAlpha);
+    println(circleAlpha);
   } 
   
   //circleAlpha %= 255;
@@ -37,9 +38,9 @@ void draw(){
   circle.display();
   triangle.display();
   
-  //image(buffer, 0, 0);
-  noise.update();
-  noise.display();
+  image(buffer, 0, 0);
+  //noise.update();
+  //noise.display();
 } 
 
 void clearBuffer(){
