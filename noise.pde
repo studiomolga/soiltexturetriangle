@@ -110,9 +110,9 @@ class Noise {
     //println(alpha(clr));
     for (NoiseMap item : noiseMap) {
       
-      if(red(item.clr) == 0 && green(item.clr) == 255 && blue(item.clr) == 0){
-        println(item.type);
-      }
+      //if(red(item.clr) == 0 && green(item.clr) == 255 && blue(item.clr) == 0){
+      //  println(item.type);
+      //}
 
       if (item.clr == clr) {
         //println("looping through noisemap");
@@ -163,7 +163,7 @@ class Noise {
           }
         }
       }
-      println("-------------------");
+      //println("-------------------");
       buffer.endDraw();
       startTime = millis();
     }

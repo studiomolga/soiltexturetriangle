@@ -36,8 +36,15 @@ void draw(){
   
   
   circle.display();
-  triangle.display();
-  
+  //triangle.display();
+  color test = buffer.get(width / 2 , 0);
+  print(red(test));
+  print(", ");
+  print(green(test));
+  print(", ");
+  print(blue(test));
+  print(", ");
+  println(alpha(test));
   //image(buffer, 0, 0);
   noise.update();
   noise.display();
