@@ -2,23 +2,24 @@ enum Type {
   NONE, BACKGROUND, CIRCLE, TRI, TRI_BORDER
 };
 
-class NoiseMap {
+class NoiseData {
   String id;
   Type type;
   color clr;
-  boolean isEliminating;
+  float fade;
 
   /*
+  the data array suggested below should somehow be linked to our data parser, so we wait until we are in a position to implement the dataparser
   TODO: add a data array here, this could be different for every noisemap. It would pass along all data needed in order to create the speciic noise color
    TODO: add a way of updating the data array with new data.
-   TODO: change name of NoiseMap to NoiseData
    TODO: add special border constructor, which should take the colors of the two other components and use it to have all other colors of which the alpha is 255 set to a noise color mode
    */
 
-  NoiseMap(String id, Type type, color clr) {
+  NoiseData(String id, Type type, color clr, float fade) {
     this.id = id;
     this.type = type;
     this.clr = clr;
+    this.fade = fade;
   }
 }
 
@@ -28,7 +29,7 @@ class Noise {
   float rate;
   float startTime;
   color triangleClr;
-  NoiseMap noiseMap[];
+  NoiseData noiseData[];
   float circleFade;
   float fadeIncr;
 
@@ -37,7 +38,7 @@ class Noise {
     this.rate = rate;
     buffer = createGraphics(width, height);
     startTime = millis();
-    noiseMap = new NoiseMap[0];
+    noiseData = new NoiseData[0];
     circleFade = 0;
     fadeIncr = 0.1;
   }
@@ -46,8 +47,8 @@ class Noise {
     triangleClr = clr;
   }
 
-  void addItemToNoiseMap(NoiseMap nmap) {
-    noiseMap = (NoiseMap[]) append(noiseMap, nmap);
+  void addItemToNoiseData(NoiseData nmap) {
+    noiseData = (NoiseData[]) append(noiseData, nmap);
   }
 
   color getColor(Type type, PVector pos) {
@@ -89,51 +90,14 @@ class Noise {
 
   Type getType(int x, int y) {
     Type type = Type.BACKGROUND;
-    //color clr = shapeBuffer.get(x, y);
+    color clr = shapeBuffer.get(x, y);
 
-    color c = shapeBuffer.get(x, y);
-    float alpha = alpha(c);
-    color clr = color(red(c), green(c), blue(c), 255);
-  
-    //if(red(clr) == 0 && green(clr) == 255 && blue(clr) == 0){
-    //  print(red(clr));
-    //  print(", ");
-    //  print(green(clr));
-    //  print(", ");
-    //  print(blue(clr));
-    //  print(", ");
-    //  println(alpha(clr));
-    //}
-    
-    //print(red(clr));
-    //print(", ");
-    //print(green(clr));
-    //print(", ");
-    //print(blue(clr));
-    //print(", ");
-    //println(alpha(clr));
-    for (NoiseMap item : noiseMap) {
-      
-      //if(red(item.clr) == 0 && green(item.clr) == 255 && blue(item.clr) == 0){
-      //  println(item.type);
-      //}
-
+    for (NoiseData item : noiseData) {
       if (item.clr == clr) {
-        //println("looping through noisemap");
         float rand = random(100);   
-        if(item.type == Type.CIRCLE){
-          if(rand < circleFade){
-            type = item.type;
-          }
-        } else {
+        if (rand < item.fade) {
           type = item.type;
         }
-        //if (rand < circleFade) {
-        //  type = item.type;
-        //  //if (type == Type.TRI) {
-        //  //  println(type);
-        //  //}
-        //}
         break;
       }
     }
@@ -145,17 +109,13 @@ class Noise {
       buffer.beginDraw();
       buffer.clear();
       buffer.background(0, 0);
-      if(circleFade <= 100.0f){
+      if (circleFade <= 100.0f) {
         circleFade += fadeIncr;
       } else {
         circleFade = 100.0f;
       }
       for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
-          //color shapeClr = shapeBuffer.get(x, y);
-          //float alpha = alpha(shapeClr);
-          //shapeClr = color(red(shapeClr), green(shapeClr), blue(shapeClr));
-          //Type t = getType(shapeClr);
           Type t = getType(x, y);
           if (t != Type.NONE) {
             color clr = getColor(t, new PVector(x, y));
@@ -163,7 +123,6 @@ class Noise {
           }
         }
       }
-      //println("-------------------");
       buffer.endDraw();
       startTime = millis();
     }

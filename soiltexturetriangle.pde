@@ -5,7 +5,12 @@ PGraphics buffer;
 Triangle triangle;
 Circle circle;
 
-float circleAlpha = 0;
+NoiseData backgroundData;
+NoiseData circleData;
+NoiseData triangleData;
+
+float circleFade;
+float triangleFade;
 
 void setup(){
   size(480, 480);
@@ -15,36 +20,39 @@ void setup(){
   color triangleClr = color(255, 0, 0);
   triangle = new Triangle(buffer, 15, 80, triangleClr, 7);
   circle = new Circle(buffer, new PVector(width / 2, 0), 350, circleClr);
-  noise.addItemToNoiseMap(new NoiseMap("background", Type.BACKGROUND, color(BACKGROUND_COLOR)));
-  noise.addItemToNoiseMap(new NoiseMap("circle", Type.CIRCLE, circleClr));
-  noise.addItemToNoiseMap(new NoiseMap("triangle", Type.TRI, triangleClr));
-  noise.addItemToNoiseMap(new NoiseMap("triangle-border", Type.TRI_BORDER, color(0)));
+  
+  circleFade = 0;
+  triangleFade = 0;
+  
+  backgroundData = new NoiseData("background", Type.BACKGROUND, color(BACKGROUND_COLOR), 100);
+  circleData = new NoiseData("circle", Type.CIRCLE, circleClr, circleFade);
+  triangleData = new NoiseData("triangle", Type.TRI, triangleClr, triangleFade);
+  
+  noise.addItemToNoiseData(backgroundData);
+  noise.addItemToNoiseData(circleData);
+  noise.addItemToNoiseData(triangleData);
+  //noise.addItemToNoiseData(new NoiseData("triangle-border", Type.TRI_BORDER, color(0)));
 }
 
 void draw(){
   background(BACKGROUND_COLOR);
   clearBuffer();
-  
-  //if(circleAlpha <= 255.0f){
-  //  circleAlpha += 0.1;
-  //  circle.setAlpha((int) circleAlpha);
-  //  //println(circleAlpha);
-  //} 
-  
-  //circleAlpha %= 255;
-  //println(circleAlpha);
-  
-  
+ 
   circle.display();
-  //triangle.display();
-  //color test = buffer.get(width / 2 , 0);
-  //print(red(test));
-  //print(", ");
-  //print(green(test));
-  //print(", ");
-  //print(blue(test));
-  //print(", ");
-  //println(alpha(test));
+  triangle.display();
+  
+  if(circleFade <= 100.0f){
+    circleData.fade += 0.1f;
+  } else {
+    circleData.fade = 100.0f;
+  }
+  
+  if(triangleFade <= 100.0f){
+    triangleData.fade += 0.01f;
+  } else {
+    triangleData.fade = 100.0f;
+  }  
+
   //image(buffer, 0, 0);
   noise.update();
   noise.display();
