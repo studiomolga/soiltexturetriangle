@@ -1,5 +1,5 @@
 enum Type {
-  NONE, BACKGROUND, CIRCLE, TRI, TRI_BORDER
+  NONE, BACKGROUND, CIRCLE, TRI, TRI_BORDER, PERLIN
 };
 
 class NoiseData {
@@ -30,8 +30,6 @@ class Noise {
   float startTime;
   color triangleClr;
   NoiseData noiseData[];
-  float circleFade;
-  float fadeIncr;
 
   Noise(PGraphics shapeBuffer, float rate) {
     this.shapeBuffer = shapeBuffer;
@@ -39,8 +37,6 @@ class Noise {
     buffer = createGraphics(width, height);
     startTime = millis();
     noiseData = new NoiseData[0];
-    circleFade = 0;
-    fadeIncr = 0.1;
   }
 
   void setTriangleColor(color clr) {
@@ -84,6 +80,9 @@ class Noise {
     case TRI_BORDER:
       clr = color(random(256));
       break;
+    case PERLIN:
+      clr = color(random(127, 256));
+      break;
     }
     return clr;
   }
@@ -93,6 +92,7 @@ class Noise {
     color clr = shapeBuffer.get(x, y);
 
     for (NoiseData item : noiseData) {
+
       if (item.clr == clr) {
         float rand = random(100);   
         if (rand < item.fade) {
@@ -109,11 +109,7 @@ class Noise {
       buffer.beginDraw();
       buffer.clear();
       buffer.background(0, 0);
-      if (circleFade <= 100.0f) {
-        circleFade += fadeIncr;
-      } else {
-        circleFade = 100.0f;
-      }
+      
       for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
           Type t = getType(x, y);

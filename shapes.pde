@@ -77,3 +77,108 @@ class Circle{
     buffer.endDraw();
   }
 }
+
+//TODO: is there a way to fuse the perlinCircle and triangle classes?
+class PerlinCircle {
+  final static short TIME_DIFF = 1000;
+  final float NUM_ANGLES;
+  
+  float centerX, centerY, minSize, maxSize, deviation;
+  float noiseScale, timeScale;
+  int segments;
+
+  final float TIME_UNIQUE = random(TIME_DIFF);
+  final float MIN_RAD, MAX_RAD;
+  
+  color perlinClr;
+  color triangleClr;
+  
+  PVector nextCoord;
+  PGraphics buffer;
+  PGraphics maskImage = createGraphics(width, height);
+  PGraphics sourceImage = createGraphics(width, height);
+  PShape perlinShape = createShape();
+  
+  PerlinCircle(PGraphics buffer, PShape triangle, float centerX, float centerY, float minSize, float maxSize, int segments, color perlinClr, color triangleClr){
+    this.buffer = buffer;
+    this.perlinClr = perlinClr;
+    this.triangleClr = triangleClr;
+    this.centerX = centerX;
+    this.centerY = centerY;
+    this.minSize = minSize;    //we can adjust for different effects
+    this.maxSize = maxSize;    //we can adjust for different effects
+    this.segments = segments;
+    NUM_ANGLES = TWO_PI / (float) segments;
+    
+    MIN_RAD = minSize;
+    MAX_RAD = maxSize;
+    noiseScale = 0.8;      //we can adjust for different effects
+    timeScale = 0.005;     //we can adjust for different effects
+    
+    triangle.setFill(255);
+    sourceImage.beginDraw();
+    sourceImage.shape(triangle, 0, 0);
+    sourceImage.endDraw();
+
+    initShape();
+  }
+  
+  void initShape(){
+    int i = 0;
+    perlinShape.beginShape();
+    perlinShape.noStroke();
+    while (i++ != segments) {
+      nextCoord = findNextCoords(i);
+      perlinShape.vertex(nextCoord.x, nextCoord.y);
+    }
+    perlinShape.endShape(CLOSE);
+  }
+  
+  void updateShape(){
+    for(int i = 0; i < perlinShape.getVertexCount(); i++){
+      PVector v = findNextCoords(i);
+      perlinShape.setVertex(i, v);
+    }
+  }
+  
+  PVector findNextCoords(final int seg) {
+    final float angle = NUM_ANGLES*seg;
+    final float cosAngle = cos(angle);
+    final float sinAngle = sin(angle);
+    final float time = timeScale*frameCount + TIME_UNIQUE;
+
+    final float noiseValue = noise(
+      noiseScale*cosAngle + noiseScale, 
+      noiseScale*sinAngle + noiseScale, time);
+
+    final float rad = MAX_RAD*noiseValue + MIN_RAD;
+    
+    PVector coord = new PVector(rad*cosAngle, rad*sinAngle);
+    return coord;
+  }
+  
+  PGraphics getMask(){
+    return maskImage;
+  }
+  
+  void display(){
+    updateShape();
+    
+    perlinShape.setFill(perlinClr);
+    
+    maskImage.beginDraw();
+    maskImage.clear();
+    maskImage.background(triangleClr);
+    maskImage.pushMatrix();
+    maskImage.translate(centerX, centerY);
+    maskImage.shape(perlinShape);
+    maskImage.popMatrix();
+    maskImage.endDraw();
+    maskImage.mask(sourceImage);
+    
+    buffer.beginDraw();
+    buffer.image(maskImage, 0, 0);
+    buffer.endDraw();
+    
+  }
+}
