@@ -1,0 +1,661 @@
+{
+    "Data": [
+        {
+            "StartDate": "20180522182353",
+            "EndDate": "20180523182353",
+            "NoDataValue": -9999,
+            "Interval": {
+                "Type": "None",
+                "Value": 0
+            },
+            "LocationIdentifier": "Grow.Thingful#0126s5n8",
+            "LocationCode": "0126s5n8",
+            "Data": [
+                {
+                    "Value": 0.22,
+                    "DateTime": "20180523182353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.52,
+                    "DateTime": "20180523180853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 1.19,
+                    "DateTime": "20180523175353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 1.71,
+                    "DateTime": "20180523173853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 2.19,
+                    "DateTime": "20180523172353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 2.48,
+                    "DateTime": "20180523170853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 2.95,
+                    "DateTime": "20180523165353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 3.9,
+                    "DateTime": "20180523163853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 4.38,
+                    "DateTime": "20180523162353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 6.74,
+                    "DateTime": "20180523160853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 10.01,
+                    "DateTime": "20180523155353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 11.74,
+                    "DateTime": "20180523153853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 11.49,
+                    "DateTime": "20180523152353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 8.55,
+                    "DateTime": "20180523150853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 8.87,
+                    "DateTime": "20180523145353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 8.61,
+                    "DateTime": "20180523143853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 10.6,
+                    "DateTime": "20180523142353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 10.35,
+                    "DateTime": "20180523140853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 16.13,
+                    "DateTime": "20180523135353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 17.61,
+                    "DateTime": "20180523133853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 12.39,
+                    "DateTime": "20180523132353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 14.42,
+                    "DateTime": "20180523130853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 14.42,
+                    "DateTime": "20180523125353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 14.1,
+                    "DateTime": "20180523123853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 14.99,
+                    "DateTime": "20180523122353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 12.48,
+                    "DateTime": "20180523120853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 48.07,
+                    "DateTime": "20180523115353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 130.1,
+                    "DateTime": "20180523113853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 143.94,
+                    "DateTime": "20180523112353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 142.05,
+                    "DateTime": "20180523110853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 138.43,
+                    "DateTime": "20180523105353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 32.97,
+                    "DateTime": "20180523103853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 142.05,
+                    "DateTime": "20180523102353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 136.68,
+                    "DateTime": "20180523100853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 133.31,
+                    "DateTime": "20180523095353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 134.97,
+                    "DateTime": "20180523093853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 131.69,
+                    "DateTime": "20180523092353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 125.55,
+                    "DateTime": "20180523090853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 124.11,
+                    "DateTime": "20180523085353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 122.69,
+                    "DateTime": "20180523083853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 118.63,
+                    "DateTime": "20180523082353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 107.87,
+                    "DateTime": "20180523080853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 104.7,
+                    "DateTime": "20180523075353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 100.74,
+                    "DateTime": "20180523073853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 77.16,
+                    "DateTime": "20180523072353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 86.01,
+                    "DateTime": "20180523070853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 48.07,
+                    "DateTime": "20180523065353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 19.1,
+                    "DateTime": "20180523063853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 18,
+                    "DateTime": "20180523062353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 20.61,
+                    "DateTime": "20180523060853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 14.12,
+                    "DateTime": "20180523055353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 9.96,
+                    "DateTime": "20180523053853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 11,
+                    "DateTime": "20180523052353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 8.84,
+                    "DateTime": "20180523050853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 16.92,
+                    "DateTime": "20180523045353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 24,
+                    "DateTime": "20180523043853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 22.51,
+                    "DateTime": "20180523042353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 3.49,
+                    "DateTime": "20180523040853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 2.04,
+                    "DateTime": "20180523035353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 1.15,
+                    "DateTime": "20180523033853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.63,
+                    "DateTime": "20180523032353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.2,
+                    "DateTime": "20180523030853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180523025353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180523023853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180523022353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180523020853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180523015353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180523013853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180523012353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180523010853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180523005353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180523003853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180523002353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180523000853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522235353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522233853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522232353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522230853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522225353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522223853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522222353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522220853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522215353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522213853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522212353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522210853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522205353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522203853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522202353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522200853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522195353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522193853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522192353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522190853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522185353",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.1,
+                    "DateTime": "20180522183853",
+                    "Availability": 1,
+                    "Quality": 0
+                },
+                {
+                    "Value": 0.38,
+                    "DateTime": "20180522182353",
+                    "Availability": 1,
+                    "Quality": 0
+                }
+            ],
+            "DataType": "Double",
+            "VariableCode": "Thingful.Connectors.GROWSensors.light",
+            "DataSourceVariableId": 3,
+            "TimeZoneOffset": "+0000",
+            "IsCumulative": false,
+            "UseQuality": false,
+            "CalculationType": "None",
+            "SensorName": "Tomate A773",
+            "SerialNumber": "PI040297AD5I208085"
+        }
+    ],
+    "Meta": {
+        "Locations": {
+            "0126s5n8": {
+                "Identifier": "Grow.Thingful#0126s5n8",
+                "Name": "Tomate A773. Serial Number: PI040297AD5I208085",
+                "DataSourceGroupCode": "Grow.Thingful",
+                "ProjectionId": 3,
+                "Code": "0126s5n8",
+                "SerialNumber": "PI040297AD5I208085",
+                "Y": 48.0693616611574,
+                "X": 15.8438798700796,
+                "Z": 0
+            }
+        },
+        "Variables": {
+            "Thingful.Connectors.GROWSensors.light": {
+                "State": 1,
+                "VariableId": 0,
+                "Name": "Light",
+                "Code": "Thingful.Connectors.GROWSensors.light",
+                "UnitCode": "mol/m2/d"
+            }
+        },
+        "DataSourceVariables": {
+            "3": {
+                "DataSourceVariableId": 3,
+                "Code": "light",
+                "Name": "Light",
+                "VariableCode": "Thingful.Connectors.GROWSensors.light",
+                "DataSourceCode": "Thingful.Connectors.GROWSensors",
+                "UnitCode": "mol/m2/d",
+                "DataType": "Double",
+                "MathematicalType": "NotSummable",
+                "MeasurementType": "Instantaneous",
+                "State": 1,
+                "IsCumulative": false
+            }
+        },
+        "Projections": {
+            "3": {
+                "ProjectionId": 3,
+                "Name": "WGS84",
+                "Epsg": 4326,
+                "ProjectionString": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs "
+            }
+        },
+        "Units": {
+            "mol/m2/d": {
+                "Name": "mol/m2/d",
+                "Code": "mol/m2/d"
+            }
+        }
+    }
+}

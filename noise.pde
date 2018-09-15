@@ -1,5 +1,11 @@
+import java.util.Calendar;
+
 enum Type {
   NONE, BACKGROUND, CIRCLE, TRI, TRI_BORDER, PERLIN
+};
+
+enum Season {
+  SUMMER, AUTUMN, WINTER, SPRING
 };
 
 class NoiseData {
@@ -7,7 +13,9 @@ class NoiseData {
   Type type;
   color clr;
   float fade;
-
+  float data;
+  Season season;
+  
   /*
   the data array suggested below should somehow be linked to our data parser, so we wait until we are in a position to implement the dataparser
   TODO: add a data array here, this could be different for every noisemap. It would pass along all data needed in order to create the speciic noise color
@@ -15,11 +23,50 @@ class NoiseData {
    TODO: add special border constructor, which should take the colors of the two other components and use it to have all other colors of which the alpha is 255 set to a noise color mode
    */
 
-  NoiseData(String id, Type type, color clr, float fade) {
+  NoiseData(String id, Type type, color clr, float fade, Date timeStamp) {
     this.id = id;
     this.type = type;
     this.clr = clr;
     this.fade = fade;
+    data = 0;
+    season = getSeason(timeStamp);
+  }
+  
+  Season getSeason(Date timeStamp){
+    Season s = Season.SUMMER;
+    
+    Date spring = getDate("0301");
+    Date summer = getDate("0601");
+    Date autumn = getDate("0901");
+    Date winter = getDate("1201");
+        
+    if((timeStamp.after(spring) && timeStamp.before(summer)) || timeStamp.equals(spring)){
+      s = Season.SPRING;
+    } else if((timeStamp.after(summer) && timeStamp.before(autumn)) || timeStamp.equals(summer)){
+      s = Season.SUMMER;
+    } else if((timeStamp.after(autumn) && timeStamp.before(winter)) || timeStamp.equals(autumn)){
+      s = Season.AUTUMN;
+    } else if((timeStamp.after(winter) && timeStamp.before(spring)) || timeStamp.equals(winter)){
+      s = Season.WINTER;
+    }
+    return s;
+  }
+  
+  Date getDate(String ts){
+    Date timeStamp = new Date();
+    SimpleDateFormat ft = new SimpleDateFormat("MMdd");
+    try{
+      timeStamp = ft.parse(ts);
+    } catch (ParseException e){
+      println("could not convert timestamp");
+    }
+    return timeStamp;
+  }
+  
+  
+  void setData(float value){
+    //this might turn in to a data array, depending on certain decisions
+    data = value;
   }
 }
 
@@ -38,7 +85,7 @@ class Noise {
     startTime = millis();
     noiseData = new NoiseData[0];
   }
-
+  
   void setTriangleColor(color clr) {
     triangleClr = clr;
   }
@@ -47,7 +94,7 @@ class Noise {
     noiseData = (NoiseData[]) append(noiseData, nmap);
   }
 
-  color getColor(Type type, PVector pos) {
+  color getColor(Type type, PVector pos, float data, Season season) {
     color clr = color(0);
     color startClr = color(0);
     color endClr = color(255);
@@ -67,6 +114,8 @@ class Noise {
       }
       break;
     case CIRCLE:
+      //println(data);
+      //println(season);
       float diameter = 350;
       inter = pos.y / (diameter / 2.0f);
       startClr = color(88, 75, 186);
@@ -92,7 +141,6 @@ class Noise {
     color clr = shapeBuffer.get(x, y);
 
     for (NoiseData item : noiseData) {
-
       if (item.clr == clr) {
         float rand = random(100);   
         if (rand < item.fade) {
@@ -102,6 +150,28 @@ class Noise {
       }
     }
     return type;
+  }
+  
+  float getData(Type t){
+    float data = 0;
+    for (NoiseData item : noiseData){
+      if(item.type == t){
+        data = item.data;
+        break;
+      }
+    }
+    return data;
+  }
+  
+  Season getSeason(Type t){
+    Season season = Season.SUMMER;
+    for (NoiseData item : noiseData){
+      if(item.type == t){
+        season = item.season;
+        break;
+      }
+    }    
+    return season;
   }
 
   void update() {
@@ -114,7 +184,9 @@ class Noise {
         for (int y = 0; y < height; y++) {
           Type t = getType(x, y);
           if (t != Type.NONE) {
-            color clr = getColor(t, new PVector(x, y));
+            float data = getData(t);
+            Season season = getSeason(t);
+            color clr = getColor(t, new PVector(x, y), data, season);
             buffer.set(x, y, clr);
           }
         }

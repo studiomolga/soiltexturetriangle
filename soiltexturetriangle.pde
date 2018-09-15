@@ -1,4 +1,7 @@
 static final int BACKGROUND_COLOR = 255;
+static final float DATA_PERIOD = 1000;
+
+DataParser dataParser;
 
 Noise noise;
 PGraphics buffer;
@@ -14,8 +17,16 @@ NoiseData perlinData;
 float circleFade;
 float triangleFade;
 
-void setup(){
+float dataStartTime;
+String sids[];
+
+void settings(){
   size(480, 480);
+  dataParser = new DataParser(sketchPath()+"/data/datafiles");
+  sids = dataParser.getStringIds();
+}
+
+void setup(){
   buffer = createGraphics(width, height);
   noise = new Noise(buffer, 40.0f);
   color circleClr = color(0, 255, 0);
@@ -23,26 +34,45 @@ void setup(){
   color perlinClr = color(0, 0, 255);
   triangle = new Triangle(buffer, 15, 80, triangleClr, 7);
   circle = new Circle(buffer, new PVector(width / 2, 0), 350, circleClr);
-  perlinCircle = new PerlinCircle(buffer, triangle.getShape(), 0, height - 80, 100, 150, 200, perlinClr, triangleClr);
+  perlinCircle = new PerlinCircle(buffer, triangle.getShape(), 0, height - 80, 10, 250, 200, perlinClr, triangleClr);
   
-  circleFade = 0;
-  triangleFade = 0;
+  circleFade = 100;
+  triangleFade = 100;
   
-  backgroundData = new NoiseData("background", Type.BACKGROUND, color(BACKGROUND_COLOR), 100);
-  circleData = new NoiseData("circle", Type.CIRCLE, circleClr, circleFade);
-  triangleData = new NoiseData("triangle", Type.TRI, triangleClr, triangleFade);
-  perlinData = new NoiseData("perlin", Type.PERLIN, perlinClr, triangleFade);
+  Date timeStamp = dataParser.getTimeStamp();
+  
+  backgroundData = new NoiseData("background", Type.BACKGROUND, color(BACKGROUND_COLOR), 100, timeStamp);
+  circleData = new NoiseData("circle", Type.CIRCLE, circleClr, circleFade, timeStamp);
+  triangleData = new NoiseData("triangle", Type.TRI, triangleClr, triangleFade, timeStamp);
+  perlinData = new NoiseData("perlin", Type.PERLIN, perlinClr, triangleFade, timeStamp);
   
   noise.addItemToNoiseData(backgroundData);
   noise.addItemToNoiseData(circleData);
   noise.addItemToNoiseData(triangleData);
   noise.addItemToNoiseData(perlinData);
   //noise.addItemToNoiseData(new NoiseData("triangle-border", Type.TRI_BORDER, color(0)));
+  
+  dataStartTime = millis();
 }
 
 void draw(){
   background(BACKGROUND_COLOR);
   clearBuffer();
+  
+  if(millis() - dataStartTime >= DATA_PERIOD){
+    float values[] = dataParser.getCurrentValues();
+    for(int i = 0; i < values.length; i++){
+      switch(sids[i]){
+        case "temperature":
+          circleData.setData(values[i]);
+          break;
+        case "light":
+          backgroundData.setData(values[i]);
+          break;
+      }
+    }
+    dataStartTime = millis();
+  }
  
   circle.display();
   perlinCircle.display();
