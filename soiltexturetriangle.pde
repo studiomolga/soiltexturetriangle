@@ -70,6 +70,7 @@ void draw(){
           break;
         case "light":
           backgroundData.setData(values[i]);
+          //println(values[i]);
           break;
       }
     }
@@ -95,8 +96,8 @@ void draw(){
   
   //image(buffer, 0, 0);
   
-  noise.setTest(bgTest);
-  bgTest += 0.005;
+  //noise.setTest(bgTest);
+  //bgTest += 0.005;
   noise.update();
   noise.display();
 } 
