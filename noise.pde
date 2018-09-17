@@ -1,5 +1,3 @@
-import java.util.Calendar;
-
 enum Type {
   NONE, BACKGROUND, CIRCLE, TRI, TRI_BORDER, PERLIN
 };
@@ -16,13 +14,6 @@ class NoiseData {
   float data;
   Season season;
   
-  /*
-  the data array suggested below should somehow be linked to our data parser, so we wait until we are in a position to implement the dataparser
-  TODO: add a data array here, this could be different for every noisemap. It would pass along all data needed in order to create the speciic noise color
-   TODO: add a way of updating the data array with new data.
-   TODO: add special border constructor, which should take the colors of the two other components and use it to have all other colors of which the alpha is 255 set to a noise color mode
-   */
-
   NoiseData(String id, Type type, color clr, float fade, Date timeStamp) {
     this.id = id;
     this.type = type;
@@ -65,7 +56,6 @@ class NoiseData {
   
   
   void setData(float value){
-    //this might turn in to a data array, depending on certain decisions
     data = value;
   }
 }
@@ -114,7 +104,7 @@ class Noise {
       inter = cos(1.75*(pos.y / height) + mult);
       inter += 1.0;
       inter /= 2.0;
-      float chance = (((abs(pos.y - height) / height) * 0.25) + 0.75) * 75;
+      float chance = (((abs(pos.y - height) / height) * 0.25) + 0.75) * 95;
 
       if(random(100) > chance){
         float randIncr = random(-0.3, 0.3);
@@ -123,31 +113,33 @@ class Noise {
       clr = lerpColor(startClr, endClr, inter);
       break;
     case CIRCLE:
-      //println(data);
-      //println(season);
       float diameter = 350;
       inter = pos.y / (diameter / 2.0f);
       float randIncr = random(-0.2, 0.2);
+      float colorInter = 0.0f;
       
       switch(season){
         case SUMMER:
+          colorInter = (constrain(data, 15, 55.0f) - 15.0f) / 40.0f;
+          startClr = lerpColor(color(255, 106, 166), color(255, 0, 121), colorInter);
+          endClr = lerpColor(color(221, 255, 239), color(255, 193, 0), colorInter);
           break;
         case AUTUMN:
+          colorInter = (constrain(data, -10.0f, 45.0f) + 10.0f) / 55.0f;
+          startClr = lerpColor(color(237, 255, 184), color(255, 93, 79), colorInter);
+          endClr = lerpColor(color(239, 135, 139), color(255, 0, 121), colorInter);
           break;
         case WINTER:
+          colorInter = (constrain(data, -10.0f, 25.0f) + 10.0f) / 35.0f;
+          startClr = lerpColor(color(213, 249, 220), color(255, 192, 69), colorInter);
+          endClr = lerpColor(color(184, 234, 255), color(143, 253, 214), colorInter);
           break;
         case SPRING:
-          //top start: R:182 G:242 B:255
-          //top end: R:96 G:251 B:182
-          //bottom start: R:219 G:184 B:255
-          //bottom end: R:255 G:85 B:234
-          float colorInter = (constrain(data, 5, 40.0f) - 5.0f) / 35.0f;
+          colorInter = (constrain(data, 5, 40.0f) - 5.0f) / 35.0f;
           startClr = lerpColor(color(182, 242, 255), color(96, 251, 182), colorInter);
           endClr = lerpColor(color(219, 184, 255), color(255, 85, 234), colorInter);
           break;
       }
-      //startClr = color(88, 75, 186);
-      //endClr = color(241, 165, 15);
       clr = lerpColor(startClr, endClr, inter + randIncr);
       break;
     case TRI:
@@ -220,7 +212,6 @@ class Noise {
       }
       buffer.endDraw();
       startTime = millis();
-      //println("----------------");
     }
   }
 

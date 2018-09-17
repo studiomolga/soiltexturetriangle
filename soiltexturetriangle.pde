@@ -1,3 +1,7 @@
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.Date;
+
 static final int BACKGROUND_COLOR = 255;
 static final float DATA_PERIOD = 1000;
 
@@ -91,7 +95,6 @@ void draw(){
   }  
   
   //image(buffer, 0, 0);
-  
   noise.update();
   noise.display();
 } 
@@ -106,7 +109,6 @@ void setData(){
     switch(sids[i]){
       case "temperature":
         circleData.setData(newValue);
-        println(newValue);
         break;
       case "light":
         backgroundData.setData(newValue);
