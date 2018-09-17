@@ -42,7 +42,7 @@ void setup(){
   circle = new Circle(buffer, new PVector(width / 2, 0), 350, circleClr);
   perlinCircle = new PerlinCircle(buffer, triangle.getShape(), 0, height - 80, 10, 250, 200, perlinClr, triangleClr);
   
-  circleFade = 100;
+  circleFade = 80;
   triangleFade = 100;
   
   Date timeStamp = dataParser.getTimeStamp();
