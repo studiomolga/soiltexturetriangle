@@ -80,11 +80,11 @@ void draw(){
   circle.display();
   perlinCircle.display();
   
-  if(circleFade <= 100.0f){
-    circleData.fade += 0.1f;
-  } else {
-    circleData.fade = 100.0f;
-  }
+  //if(circleFade <= 100.0f){
+  //  circleData.fade += 0.1f;
+  //} else {
+  //  circleData.fade = 100.0f;
+  //}
   
   if(triangleFade <= 100.0f){
     triangleData.fade += 0.1f;
