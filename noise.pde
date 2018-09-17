@@ -77,6 +77,7 @@ class Noise {
   float startTime;
   color triangleClr;
   NoiseData noiseData[];
+  float test;
 
   Noise(PGraphics shapeBuffer, float rate) {
     this.shapeBuffer = shapeBuffer;
@@ -84,6 +85,7 @@ class Noise {
     buffer = createGraphics(width, height);
     startTime = millis();
     noiseData = new NoiseData[0];
+    test = 0;
   }
   
   void setTriangleColor(color clr) {
@@ -92,6 +94,10 @@ class Noise {
 
   void addItemToNoiseData(NoiseData nmap) {
     noiseData = (NoiseData[]) append(noiseData, nmap);
+  }
+  
+  void setTest(float t){
+    test = t;
   }
 
   color getColor(Type type, PVector pos, float data, Season season) {
@@ -103,15 +109,17 @@ class Noise {
     case NONE:
       break;
     case BACKGROUND:
-      float gradientOffset = 0;        //play with this value can also be negative
-      inter = (pos.y - gradientOffset) / (height - gradientOffset);
-      startClr = color(0);
-      endClr = color(127);
-      if (random(100) < inter * 100) {
+      float offset = test;
+      float mult = offset * HALF_PI;  
+      inter = cos(1.75*(pos.y / height) + mult);
+      inter += 1.0;
+      inter /= 2.0;
+      
+      //if(random(100) < 66){
         clr = lerpColor(startClr, endClr, inter);
-      } else {
-        clr = color(startClr);
-      }
+      //} else {
+      //  clr = color(random(200));
+      //}
       break;
     case CIRCLE:
       //println(data);

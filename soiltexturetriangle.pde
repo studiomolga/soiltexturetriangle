@@ -20,6 +20,8 @@ float triangleFade;
 float dataStartTime;
 String sids[];
 
+float bgTest = 0;
+
 void settings(){
   size(480, 480);
   dataParser = new DataParser(sketchPath()+"/data/datafiles");
@@ -74,8 +76,8 @@ void draw(){
     dataStartTime = millis();
   }
  
-  circle.display();
-  perlinCircle.display();
+  //circle.display();
+  //perlinCircle.display();
   
   if(circleFade <= 100.0f){
     circleData.fade += 0.1f;
@@ -92,6 +94,9 @@ void draw(){
   }  
   
   //image(buffer, 0, 0);
+  
+  noise.setTest(bgTest);
+  bgTest += 0.005;
   noise.update();
   noise.display();
 } 
