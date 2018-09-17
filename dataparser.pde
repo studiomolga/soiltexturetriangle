@@ -52,7 +52,7 @@ class DataFile {
   
   float getCurrentValue(){
     float value = values[dataIndex];
-    dataIndex++;
+    dataIndex++;    //TODO: move this to a seperate function, when you use the getCurrentValue and getNextValue functions in the wrong order they cause confusion, better to seperate
     dataIndex %= data.size();
     return value;
   }

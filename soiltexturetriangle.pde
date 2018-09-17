@@ -1,5 +1,5 @@
 static final int BACKGROUND_COLOR = 255;
-static final float DATA_PERIOD = 2500;
+static final float DATA_PERIOD = 1000;
 
 DataParser dataParser;
 
@@ -19,7 +19,6 @@ float triangleFade;
 
 float dataStartTime;
 String sids[];
-
 float currValues[];
 float nextValues[];
 
@@ -107,10 +106,10 @@ void setData(){
     switch(sids[i]){
       case "temperature":
         circleData.setData(newValue);
+        println(newValue);
         break;
       case "light":
         backgroundData.setData(newValue);
-        //println(currValues[i]);
         break;
     }
   }

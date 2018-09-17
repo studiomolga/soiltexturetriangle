@@ -109,27 +109,45 @@ class Noise {
     case NONE:
       break;
     case BACKGROUND:
-      float offset = ((data / 150) * 4) + 1.4;          //black: 1.4, white: 3.4, black: 5.4
+      float offset = ((data / 150.0f) * 4.0f) + 1.4f;          //black: 1.4, white: 3.4, black: 5.4
       float mult = offset * HALF_PI;  
       inter = cos(1.75*(pos.y / height) + mult);
       inter += 1.0;
       inter /= 2.0;
-      float chance = (((abs(pos.y - height) / height) * 0.25) + 0.75) * 95;
-      
-      if(random(100) < chance){
-        clr = lerpColor(startClr, endClr, inter);
-      } else {
-        clr = color(random(127));
+      float chance = (((abs(pos.y - height) / height) * 0.25) + 0.75) * 75;
+
+      if(random(100) > chance){
+        float randIncr = random(-0.3, 0.3);
+        inter += randIncr;
       }
+      clr = lerpColor(startClr, endClr, inter);
       break;
     case CIRCLE:
       //println(data);
       //println(season);
       float diameter = 350;
       inter = pos.y / (diameter / 2.0f);
-      startClr = color(88, 75, 186);
-      endClr = color(241, 165, 15);
       float randIncr = random(-0.2, 0.2);
+      
+      switch(season){
+        case SUMMER:
+          break;
+        case AUTUMN:
+          break;
+        case WINTER:
+          break;
+        case SPRING:
+          //top start: R:182 G:242 B:255
+          //top end: R:96 G:251 B:182
+          //bottom start: R:219 G:184 B:255
+          //bottom end: R:255 G:85 B:234
+          float colorInter = (constrain(data, 5, 40.0f) - 5.0f) / 35.0f;
+          startClr = lerpColor(color(182, 242, 255), color(96, 251, 182), colorInter);
+          endClr = lerpColor(color(219, 184, 255), color(255, 85, 234), colorInter);
+          break;
+      }
+      //startClr = color(88, 75, 186);
+      //endClr = color(241, 165, 15);
       clr = lerpColor(startClr, endClr, inter + randIncr);
       break;
     case TRI:
