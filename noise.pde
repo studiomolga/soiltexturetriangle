@@ -109,19 +109,14 @@ class Noise {
     case NONE:
       break;
     case BACKGROUND:
-      float offset = ((data / 100) * 4) + 1.4;          //black: 1.4, white: 3.4, black: 5.4
+      float offset = ((data / 150) * 4) + 1.4;          //black: 1.4, white: 3.4, black: 5.4
       float mult = offset * HALF_PI;  
       inter = cos(1.75*(pos.y / height) + mult);
       inter += 1.0;
       inter /= 2.0;
-      
       float chance = (((abs(pos.y - height) / height) * 0.25) + 0.75) * 95;
-      //println(chance);
       
-      float rand = random(100);
-      //println(rand < 95);
-      
-      if(rand < chance){
+      if(random(100) < chance){
         clr = lerpColor(startClr, endClr, inter);
       } else {
         clr = color(random(127));

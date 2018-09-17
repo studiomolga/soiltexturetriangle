@@ -1,5 +1,5 @@
 static final int BACKGROUND_COLOR = 255;
-static final float DATA_PERIOD = 1000;
+static final float DATA_PERIOD = 2500;
 
 DataParser dataParser;
 
@@ -20,7 +20,8 @@ float triangleFade;
 float dataStartTime;
 String sids[];
 
-float bgTest = 0;
+float currValues[];
+float nextValues[];
 
 void settings(){
   size(480, 480);
@@ -55,6 +56,8 @@ void setup(){
   //noise.addItemToNoiseData(new NoiseData("triangle-border", Type.TRI_BORDER, color(0)));
   
   dataStartTime = millis();
+  nextValues = dataParser.getNextValues();
+  currValues = dataParser.getCurrentValues();
 }
 
 void draw(){
@@ -62,23 +65,17 @@ void draw(){
   clearBuffer();
   
   if(millis() - dataStartTime >= DATA_PERIOD){
-    float values[] = dataParser.getCurrentValues();
-    for(int i = 0; i < values.length; i++){
-      switch(sids[i]){
-        case "temperature":
-          circleData.setData(values[i]);
-          break;
-        case "light":
-          backgroundData.setData(values[i]);
-          //println(values[i]);
-          break;
-      }
-    }
+    nextValues = dataParser.getNextValues();
+    currValues = dataParser.getCurrentValues();
+    
     dataStartTime = millis();
+    setData();
+  } else {
+    setData();
   }
  
-  //circle.display();
-  //perlinCircle.display();
+  circle.display();
+  perlinCircle.display();
   
   if(circleFade <= 100.0f){
     circleData.fade += 0.1f;
@@ -96,11 +93,28 @@ void draw(){
   
   //image(buffer, 0, 0);
   
-  //noise.setTest(bgTest);
-  //bgTest += 0.005;
   noise.update();
   noise.display();
 } 
+
+void setData(){
+  for(int i = 0; i < currValues.length; i ++){
+    float diff = nextValues[i] - currValues[i];
+    float mult = (millis() - dataStartTime) / DATA_PERIOD;
+    mult = (mult <= 1) ? mult : 1;
+    float newValue = currValues[i] + (diff * mult);
+    
+    switch(sids[i]){
+      case "temperature":
+        circleData.setData(newValue);
+        break;
+      case "light":
+        backgroundData.setData(newValue);
+        //println(currValues[i]);
+        break;
+    }
+  }
+}
 
 void clearBuffer(){
   buffer.beginDraw();
