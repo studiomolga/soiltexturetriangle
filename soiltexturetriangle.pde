@@ -1,9 +1,10 @@
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Map;
 
 static final int BACKGROUND_COLOR = 255;
-static final float DATA_PERIOD = 1000;
+static final float DATA_PERIOD = 3000;
 
 DataParser dataParser;
 
@@ -26,6 +27,8 @@ float dataStartTime;
 String sids[];
 float currValues[];
 float nextValues[];
+
+int soilTypeID = 0;
 
 void settings(){
   size(480, 480);
@@ -63,6 +66,10 @@ void setup(){
   dataStartTime = millis();
   nextValues = dataParser.getNextValues();
   currValues = dataParser.getCurrentValues();
+  
+  //temporary soil type set
+  perlinData.setData(soilTypeID);
+  println(Soil.valueOf(soilTypeID));
 }
 
 void draw(){
@@ -70,6 +77,11 @@ void draw(){
   clearBuffer();
   
   if(millis() - dataStartTime >= DATA_PERIOD){
+    soilTypeID += 1;
+    soilTypeID %= 12;
+    perlinData.setData(soilTypeID);
+    println(Soil.valueOf(soilTypeID));
+    
     nextValues = dataParser.getNextValues();
     currValues = dataParser.getCurrentValues();
     

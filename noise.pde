@@ -6,6 +6,31 @@ enum Season {
   SUMMER, AUTUMN, WINTER, SPRING
 };
 
+enum Soil {
+    SAND(0), LOAMY_SAND(1), SANDY_LOAM(2), LOAM(3), SANDY_CLAY_LOAM(4), SANDY_CLAY(5), CLAY_LOAM(6), CLAY(7), SILTY_CLAY(8), SILTY_CLAY_LOAM(9), SILT_LOAM(10), SILT(11);
+
+    private int value;
+    private static Map map = new HashMap();
+
+    private Soil(int value) {
+        this.value = value;
+    }
+
+    static {
+        for (Soil soil : Soil.values()) {
+            map.put(soil.value, soil);
+        }
+    }
+
+    public static Soil valueOf(int soil) {
+        return (Soil) map.get(soil);
+    }
+
+    public int getValue() {
+        return value;
+    }
+}
+
 class NoiseData {
   String id;
   Type type;
@@ -67,7 +92,6 @@ class Noise {
   float startTime;
   color triangleClr;
   NoiseData noiseData[];
-  float test;
 
   Noise(PGraphics shapeBuffer, float rate) {
     this.shapeBuffer = shapeBuffer;
@@ -75,7 +99,6 @@ class Noise {
     buffer = createGraphics(width, height);
     startTime = millis();
     noiseData = new NoiseData[0];
-    test = 0;
   }
   
   void setTriangleColor(color clr) {
@@ -84,10 +107,6 @@ class Noise {
 
   void addItemToNoiseData(NoiseData nmap) {
     noiseData = (NoiseData[]) append(noiseData, nmap);
-  }
-  
-  void setTest(float t){
-    test = t;
   }
 
   color getColor(Type type, PVector pos, float data, Season season) {
@@ -149,12 +168,117 @@ class Noise {
       clr = color(random(256));
       break;
     case PERLIN:
-      clr = color(random(127, 256));
+      Soil soil = Soil.valueOf((int) data);
+      //println(soil);
+      float c = random(100);
+      switch(soil){
+        case SAND:
+          if(c < 10){
+            clr = color(255);
+          } else {
+            clr = color(0);
+          }
+          break;
+        case LOAMY_SAND:
+          if(c < 3){
+            clr = color(255);
+          } else {
+            clr = color(0);
+          }
+          break;
+        case SANDY_LOAM:
+          if(c > 2 && c < 7){
+            clr = color(random(120, 170));
+          } else if(c <= 2 ){
+            clr = color(255);
+          } else {
+            clr = color(0);
+          }
+          break;
+        case LOAM:
+          if(c > 2 && c < 5){
+            clr = color(random(90, 140));
+          } else if(c <= 2 ){
+            clr = color(200);
+          } else {
+            clr = color(0);
+          }
+          break;
+        case SANDY_CLAY_LOAM:
+          if(c > 2 && c < 4){
+            clr = color(random(60, 110));
+          } else if(c <= 2 ){
+            clr = color(150);
+          } else {
+            clr = color(0);
+          }
+          break;
+        case SANDY_CLAY:
+          if(c > 2 && c < 12){
+            clr = color(random(60, 110));
+          } else if(c <= 2 ){
+            clr = color(160);
+          } else {
+            clr = color(0);
+          }
+          break;
+        case CLAY_LOAM:
+          if(c > 2 && c < 12){
+            clr = color(random(60, 80));
+          } else if(c <= 2 ){
+            clr = color(100);
+          } else {
+            clr = color(0);
+          }
+          break;
+        case CLAY:
+          if(c < 2){
+            clr = color(random(60, 90));
+          } else {
+            clr = color(0);
+          }
+          break;
+        case SILTY_CLAY:
+          if(c < 20){
+            clr = color(random(60, 90));
+          } else {
+            clr = color(0);
+          }
+          break;
+        case SILTY_CLAY_LOAM:
+          if(c > 1 && c < 3){
+            clr = color(random(90, 130));
+          } else if(c <= 1){
+            clr = color(170);
+          } else {
+            clr = color(0);
+          }
+          break;
+        case SILT_LOAM:
+          if(c > 1 && c < 5){
+            clr = color(random(120, 150));
+          } else if(c <= 1){
+            clr = color(170);
+          } else {
+            clr = color(0);
+          }
+          break;
+        case SILT:
+          if(c > 2 && c < 12){
+            clr = color(random(100, 140));
+          } else if(c <= 2 ){
+            clr = color(160);
+          } else {
+            clr = color(0);
+          }
+          break;
+      }
+      //clr = color(random(127, 256));
       break;
     }
     return clr;
   }
-
+  
   Type getType(int x, int y) {
     Type type = Type.BACKGROUND;
     color clr = shapeBuffer.get(x, y);
