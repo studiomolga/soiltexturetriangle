@@ -88,7 +88,7 @@ class PerlinCircle {
   int segments;
 
   final float TIME_UNIQUE = random(TIME_DIFF);
-  final float MIN_RAD, MAX_RAD;
+  //final float MIN_RAD, MAX_RAD;
   
   color perlinClr;
   color triangleClr;
@@ -110,8 +110,8 @@ class PerlinCircle {
     this.segments = segments;
     NUM_ANGLES = TWO_PI / (float) segments;
     
-    MIN_RAD = minSize;
-    MAX_RAD = maxSize;
+    //MIN_RAD = minSize;
+    //MAX_RAD = maxSize;
     noiseScale = 0.8;      //we can adjust for different effects
     timeScale = 0.005;     //we can adjust for different effects
     
@@ -151,7 +151,7 @@ class PerlinCircle {
       noiseScale*cosAngle + noiseScale, 
       noiseScale*sinAngle + noiseScale, time);
 
-    final float rad = MAX_RAD*noiseValue + MIN_RAD;
+    final float rad = maxSize*noiseValue + minSize;
     
     PVector coord = new PVector(rad*cosAngle, rad*sinAngle);
     return coord;
@@ -159,6 +159,17 @@ class PerlinCircle {
   
   PGraphics getMask(){
     return maskImage;
+  }
+  
+  void incrRadius(float incr){
+    if(maxSize < 400.0f){
+      maxSize += incr;
+      if(maxSize - minSize > 200.0f){
+        minSize += incr;
+      }
+    } else if(minSize < 400.0f){
+      minSize += incr;
+    }
   }
   
   void display(){

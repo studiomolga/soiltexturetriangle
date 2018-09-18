@@ -20,6 +20,7 @@ NoiseData perlinData;
 
 float circleFade;
 float triangleFade;
+float perlinRadius;
 
 float dataStartTime;
 String sids[];
@@ -40,10 +41,11 @@ void setup(){
   color perlinClr = color(0, 0, 255);
   triangle = new Triangle(buffer, 15, 80, triangleClr, 7);
   circle = new Circle(buffer, new PVector(width / 2, 0), 350, circleClr);
-  perlinCircle = new PerlinCircle(buffer, triangle.getShape(), 0, height - 80, 10, 250, 200, perlinClr, triangleClr);
+  perlinCircle = new PerlinCircle(buffer, triangle.getShape(), 0, height - 80, 0, 0, 200, perlinClr, triangleClr);
   
   circleFade = 80;
   triangleFade = 100;
+  perlinRadius = 0;
   
   Date timeStamp = dataParser.getTimeStamp();
   
@@ -85,6 +87,8 @@ void draw(){
   //} else {
   //  circleData.fade = 100.0f;
   //}
+  
+  perlinCircle.incrRadius(0.2f);
   
   if(triangleFade <= 100.0f){
     triangleData.fade += 0.1f;
